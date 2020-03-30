@@ -55,6 +55,14 @@
           display: none;
         }
       }
+
+      .logo .dark {
+        display: none;
+      }
+
+      .logo .light {
+        display: block;
+      }
     }
 
     .title-main {
@@ -78,6 +86,14 @@
       background-color: $black;
       position: static;
       justify-content: center;
+
+      .logo .dark {
+        display: none;
+      }
+
+      .logo .light {
+        display: block;
+      }
     }
 
     .title-main {

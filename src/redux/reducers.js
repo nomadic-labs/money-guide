@@ -457,6 +457,22 @@ export const translations = (state={}, action) => {
   }
 }
 
+export const tags = (state={}, action) => {
+  switch (action.type) {
+    case 'SET_TAGS':
+      return {
+        ...action.strings
+      }
+    case "UPDATE_TAG_STATE":
+      return {
+        ...state,
+        [action.tag.id]: action.tag
+      }
+    default:
+      return state
+  }
+}
+
 
 export const appReducers = (state = {}, action) => {
   return {
@@ -469,6 +485,7 @@ export const appReducers = (state = {}, action) => {
     categories: categories(state.categories, action),
     pages: pages(state.pages, action),
     translations: translations(state.translations, action),
+    tags: tags(state.tags, action)
   }
 }
 

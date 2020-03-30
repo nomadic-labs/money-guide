@@ -15,7 +15,13 @@ import {
   EditablesContext
 } from 'react-easy-editables';
 
-import { setOrderedPages, setCurrentLang, setPages, setTranslations } from "../redux/actions"
+import {
+  setOrderedPages,
+  setCurrentLang,
+  setPages,
+  setTranslations,
+  setTags
+} from "../redux/actions"
 
 import "../assets/sass/less-cms/base.scss";
 import "../assets/sass/custom.scss";
@@ -91,6 +97,7 @@ const mapStateToProps = state => {
     orderedPages: state.pages.orderedPages,
     currentLang: state.navigation.currentLang,
     translations: state.translations,
+    tags: state.tags,
   };
 };
 
@@ -98,6 +105,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setTranslations: translations => {
       dispatch(setTranslations(translations));
+    },
+    setTags: tags => {
+      dispatch(setTags(tags));
     },
     setPages: pages => {
       dispatch(setPages(pages));
@@ -118,13 +128,11 @@ class DefaultLayout extends React.Component {
     const modulePages = filter(this.props.allPages, page => (page.category === "modules" && page.lang === currentLang))
     const orderedPages = this.orderedPages(modulePages.find(page => page.head))
 
-    console.log('modulePages', modulePages)
-    console.log('orderedPages', orderedPages)
-
     this.props.setOrderedPages(orderedPages)
     this.props.setCurrentLang(currentLang)
     this.props.setPages(this.props.allPages)
     this.props.setTranslations(this.props.allTranslations)
+    this.props.setTags(this.props.allTags)
   }
 
   nextPage = page => {
@@ -205,6 +213,16 @@ const LayoutContainer = props => (
             fr
           }
         }
+        allTags {
+          nodes {
+            id
+            value
+            label {
+              en
+              fr
+            }
+          }
+        }
       }
     `}
     render={data => {
@@ -220,8 +238,14 @@ const LayoutContainer = props => (
         return obj
       }, {})
 
+      const tagsArr = data.allTags.nodes
+      const tags = tagsArr.reduce((obj, node) => {
+        obj[node.id] = node
+        return obj
+      }, {})
+
       return(
-        <DefaultLayout data={data} allPages={pages} allTranslations={translations} {...props} />
+        <DefaultLayout data={data} allPages={pages} allTranslations={translations} allTags={tags} {...props} />
       )
     }}
   />

@@ -23,6 +23,7 @@ import {
 
 
 import PopupNavigation from "./PopupNavigation"
+import TagSelector from "./TagSelector"
 import T from "../common/Translation"
 
 import { LANGUAGE_OPTIONS, HOME_URLS } from "../../utils/constants"
@@ -32,6 +33,7 @@ const isClient = typeof window !== 'undefined';
 class Footer extends React.Component {
   state = {
     anchorEl: null,
+    tagAnchor: null,
     shareAnchor: null,
   };
 
@@ -43,6 +45,14 @@ class Footer extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  openTagSelector = e => {
+    this.setState({ tagAnchor: e.currentTarget });
+  };
+
+  closeTagSelector = e => {
+    this.setState({ tagAnchor: null });
+  };
+
   openShareButtons = e => {
     this.setState({ shareAnchor: e.currentTarget });
   };
@@ -52,8 +62,8 @@ class Footer extends React.Component {
   };
 
   render() {
-    const { props, openMenu, closeMenu, openShareButtons, closeShareButtons } = this;
-    const { anchorEl, shareAnchor } = this.state;
+    const { props, openMenu, closeMenu, openTagSelector, closeTagSelector, openShareButtons, closeShareButtons } = this;
+    const { anchorEl, shareAnchor, tagAnchor } = this.state;
     const translations = props.pageData ? props.pageData.translations || {} : {}
     const shareUrl = props.location ? props.location.href : isClient ? window.location.origin : "";
     const shareTitle = props.pageData ? props.pageData.title : "Feminist Law Reform 101"
@@ -72,14 +82,33 @@ class Footer extends React.Component {
           elevation={0}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
           transformOrigin={{
             vertical: 'bottom',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
         >
           <PopupNavigation />
+        </Menu>
+        <Menu
+          id="tag-selector"
+          role="menu"
+          anchorEl={tagAnchor}
+          open={Boolean(tagAnchor)}
+          onClose={closeTagSelector}
+          className="tag-selector"
+          elevation={0}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+        >
+          <TagSelector />
         </Menu>
         <Popover
           id="share-buttons"
@@ -91,11 +120,11 @@ class Footer extends React.Component {
           elevation={0}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
           transformOrigin={{
             vertical: 'bottom',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
         >
           <Card variant="outlined" className="share-buttons-popover">
@@ -127,6 +156,13 @@ class Footer extends React.Component {
                 </Link>
               </Grid>
               <Grid item xs={12} md={8} className="footer-section footer-right">
+                <button
+                  onClick={openTagSelector}
+                  aria-owns={tagAnchor ? "tag-selector" : null}
+                  aria-haspopup="true"
+                >
+                  Select province
+                </button>
                 <button
                   onClick={openShareButtons}
                   aria-owns={shareAnchor ? "share-buttons" : null}
@@ -166,7 +202,7 @@ class Footer extends React.Component {
           <BottomNavigation
             style={{ height: "auto", justifyContent: "space-between", alignItems: "center"}}
           >
-            <div className="d-flex align-center">
+            <div className="d-flex align-center footer-left">
               <button
                 onClick={openShareButtons}
                 aria-owns={shareAnchor ? "share-buttons" : null}

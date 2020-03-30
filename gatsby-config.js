@@ -48,6 +48,10 @@ module.exports = {
             type: "Translations",
             path: "translations",
           },
+          {
+            type: "Tags",
+            path: "tags",
+          },
         ]
       }
     },
