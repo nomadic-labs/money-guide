@@ -22,10 +22,13 @@ const TagSelector = props => {
   const orderedTags = orderBy(props.tags, tag => tag.label[props.currentLang]);
   return (
     <div>
+      <MenuItem onClick={handleSelectedTag(null)} className="navigation-module">
+        <T id="all_tags" />
+      </MenuItem>
     {
       orderedTags.map((tag, index) => {
         return (
-          <MenuItem onClick={handleSelectedTag} key={tag.value} className="navigation-module">
+          <MenuItem onClick={handleSelectedTag(tag)} key={tag.value} className="navigation-module">
             {tag.label[props.currentLang]}
           </MenuItem>
         )

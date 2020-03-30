@@ -161,7 +161,7 @@ class Footer extends React.Component {
                   aria-owns={tagAnchor ? "tag-selector" : null}
                   aria-haspopup="true"
                 >
-                  Select province
+                  <T id="select_province" />
                 </button>
                 <button
                   onClick={openShareButtons}
