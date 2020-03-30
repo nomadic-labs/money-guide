@@ -1,0 +1,91 @@
+/* RESPONSIVE FOR TABLETS */
+
+@media (max-width: 992px) {
+  body .nl-page {
+    h1 {
+      font-size: calc(22px + 1vw);
+    }
+
+    footer {
+      padding: 0.75rem;
+      border-top: 1px solid $black;
+      width: 100%;
+      background: white;
+
+      button, a {
+        font-size: 0.8rem;
+      }
+
+      #toc-btn {
+        top: -65px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  body .nl-page {
+    #landing {
+      height: calc(100vh - 42px);
+      padding-top: 20%;
+    }
+
+    .page-wrapper {
+      padding-bottom: 37px; /*footer height*/
+    }
+  }
+}
+
+/* RESPONSIVE FOR MOBILE */
+
+@media (max-width: 600px) {
+  body .nl-page {
+    .bg-image {
+      background-image: url("../images/header-vertical.jpg");
+    }
+
+    .navbar {
+      background-color: $black;
+      position: static;
+      justify-content: center;
+
+      &.module {
+        justify-content: center;
+        .site-title {
+          display: none;
+        }
+      }
+    }
+
+    .title-main {
+      display: none;
+    }
+
+    .title-mobile {
+      display: block;
+    }
+  }
+}
+
+
+@media (orientation:portrait) {
+  body .nl-page {
+    .bg-image {
+      background-image: url("../images/header-vertical.jpg");
+    }
+
+    .navbar {
+      background-color: $black;
+      position: static;
+      justify-content: center;
+    }
+
+    .title-main {
+      display: none;
+    }
+
+    .title-mobile {
+      display: block;
+    }
+  }
+}
