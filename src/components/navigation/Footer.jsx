@@ -108,7 +108,7 @@ class Footer extends React.Component {
             horizontal: 'right',
           }}
         >
-          <TagSelector />
+          <TagSelector closeTagSelector={closeTagSelector} />
         </Menu>
         <Popover
           id="share-buttons"

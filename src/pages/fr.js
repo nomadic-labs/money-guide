@@ -13,6 +13,7 @@ import Layout from "../layouts/default.js";
 import CourseModules from "../components/common/CourseModules"
 import T from "../components/common/Translation"
 import verticalHeader from "../assets/images/header-vertical.jpg"
+import horizontalHeader from "../assets/images/header-horizontal.jpg"
 
 
 const mapDispatchToProps = dispatch => {
@@ -54,8 +55,7 @@ class HomePage extends React.Component {
     return (
       <Layout light={true} location={this.props.location}>
         <div className="bg-image title-main">
-          <section id="landing" className="wow fadeIn">
-          </section>
+          <img src={horizontalHeader} alt="" />
         </div>
         <div className="title-mobile">
           <img src={verticalHeader} alt="" />

@@ -457,16 +457,35 @@ export const translations = (state={}, action) => {
   }
 }
 
-export const tags = (state={}, action) => {
+export const tags = (state={ openModal: false }, action) => {
   switch (action.type) {
     case 'SET_TAGS':
       return {
-        ...action.strings
+        ...state,
+        tags: action.strings
       }
     case "UPDATE_TAG_STATE":
       return {
         ...state,
-        [action.tag.id]: action.tag
+        tags: {
+          ...state.tags,
+          [action.tag.id]: action.tag
+        }
+      }
+    case "SET_SELECTED_TAG":
+      return {
+        ...state,
+        selectedTag: action.selection
+      }
+    case "OPEN_TAG_SELECTOR_MODAL":
+      return {
+        ...state,
+        openModal: true
+      }
+    case "CLOSE_TAG_SELECTOR_MODAL":
+      return {
+        ...state,
+        openModal: false
       }
     default:
       return state

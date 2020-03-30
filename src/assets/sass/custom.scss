@@ -186,6 +186,7 @@ body .nl-page {
 
     .footer-left {
       justify-content: flex-start;
+      border-right: 1px solid $black;
       button, a {
         margin-right: 1rem;
       }
@@ -842,7 +843,31 @@ body .nl-page {
   }
 }
 
+#tag-selector-dialogue {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.tag-selector-modal {
+  .MuiDialog-paper {
+    padding: 20px;
+  }
+
+  .tag-selector {
+    border: 1px solid $black;
+
+    &.MuiList-padding {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
 .tag-selector {
+  border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+
   .MuiMenu-paper {
     border-radius: 0;
     border: 1px solid $black;
@@ -850,12 +875,15 @@ body .nl-page {
     max-width: 400px;
   }
 
+  .MuiList-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .navigation-module {
     border-bottom: 1px solid $black;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
     font-family: $header-font;
-    font-size: 1rem;
+    font-size: 0.9rem;
 
     &:last-of-type {
       border-bottom: none;
@@ -877,6 +905,10 @@ body .nl-page {
         text-decoration: underline;
         color: $black;
       }
+    }
+
+    &.selected {
+      background-color: $tertiary-color;
     }
   }
 }
@@ -922,8 +954,9 @@ body .nl-page {
   color: $tertiary-color;
 }
 
-.text-centered {
+.text-center {
   text-align: center;
+  justify-content: center;
 }
 
 .no-text-decoration {

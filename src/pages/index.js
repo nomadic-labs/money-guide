@@ -7,6 +7,7 @@ import { EditableText, EditableParagraph } from "react-easy-editables";
 import {
   updatePage,
   loadPageData,
+  openTagSelectorModal
 } from "../redux/actions";
 
 import Layout from "../layouts/default.js";
@@ -14,6 +15,8 @@ import CourseModules from "../components/common/CourseModules"
 import T from "../components/common/Translation"
 import verticalHeader from "../assets/images/header-vertical.jpg"
 import horizontalHeader from "../assets/images/header-horizontal.jpg"
+import TagSelectorModal from "../components/common/TagSelectorModal"
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -23,6 +26,9 @@ const mapDispatchToProps = dispatch => {
     onLoadPageData: data => {
       dispatch(loadPageData(data));
     },
+    openTagSelectorModal: () => {
+      dispatch(openTagSelectorModal())
+    }
   };
 };
 
@@ -45,6 +51,12 @@ class HomePage extends React.Component {
     this.props.onLoadPageData(initialPageData);
   }
 
+  componentDidMount() {
+    if (!this.props.selectedTag) {
+      this.props.openTagSelectorModal()
+    }
+  }
+
   onSave = id => content => {
     this.props.onUpdatePageData("nawl", id, content);
   };
@@ -60,7 +72,7 @@ class HomePage extends React.Component {
         <div className="title-mobile">
           <img src={verticalHeader} alt="" />
           <div className="bg-dark course-title">
-            <div className="text-light title">
+            <div className="text-light text-center title">
               <h1><T id="site_title" /></h1>
             </div>
           </div>
@@ -112,6 +124,8 @@ class HomePage extends React.Component {
             <EditableParagraph content={content["nawl-description"]} handleSave={this.onSave("nawl-description")} />
           </Container>
         </section>
+
+        <TagSelectorModal />
 
       </Layout>
     );

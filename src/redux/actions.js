@@ -771,3 +771,28 @@ export function setTranslations(strings) {
 export function setTags(strings) {
   return { type: "SET_TAGS", strings }
 }
+
+export function setSelectedTag(selection) {
+  return { type: 'SET_SELECTED_TAG', selection}
+}
+
+export function saveSelectedTag(selection) {
+  return (dispatch, getState) => {
+    if (localStorage !== undefined && localStorage !== null) {
+      if (selection) {
+        localStorage.setItem('money-guide-province-id', selection.id)
+      } else {
+        localStorage.removeItem('money-guide-province-id')
+      }
+    }
+    dispatch(setSelectedTag(selection))
+  }
+}
+
+export function openTagSelectorModal() {
+  return { type: 'OPEN_TAG_SELECTOR_MODAL' }
+}
+
+export function closeTagSelectorModal() {
+  return { type: 'CLOSE_TAG_SELECTOR_MODAL' }
+}
