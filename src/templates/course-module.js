@@ -13,6 +13,7 @@ import {
   loadPageData,
   updateTitle,
   updateHeaderImage,
+  saveSelectedTag,
 } from "../redux/actions";
 
 import Layout from "../layouts/default.js";
@@ -35,6 +36,9 @@ const mapDispatchToProps = dispatch => {
     onUpdateHeaderImage: image => {
       dispatch(updateHeaderImage(image));
     },
+    onSelectTag: selection => {
+      dispatch(saveSelectedTag(selection))
+    }
   };
 };
 
@@ -44,6 +48,7 @@ const mapStateToProps = state => {
     orderedPages: state.pages.orderedPages,
     pages: state.pages.pages,
     currentLang: state.navigation.currentLang,
+    tags: state.tags.tags
   };
 };
 
@@ -58,6 +63,14 @@ class CourseModulePage extends React.Component {
 
     this.props.onLoadPageData(initialPageData);
   }
+
+  // componentDidMount() {
+  //   const savedSelectedTagId = localStorage.getItem('money-guide-province-id')
+  //   if (savedSelectedTagId) {
+  //     const selectedTag = this.props.tags[savedSelectedTagId]
+  //     this.props.onSelectTag(selectedTag)
+  //   }
+  // }
 
   onSave = id => content => {
     this.props.onUpdatePageData(this.props.data.pages.id, id, content);
@@ -112,6 +125,7 @@ class CourseModulePage extends React.Component {
                 sectionIndex={index}
                 key={index}
                 type={ section.type }
+                sectionTag={ section.tag }
               />
             )
           })

@@ -11,6 +11,7 @@ import {
   addContentItem,
   updateContentItem,
   deleteContentItem,
+  editSectionTag,
 } from "../../redux/actions";
 
 import Header from "../common/Header";
@@ -74,6 +75,9 @@ const mapDispatchToProps = dispatch => {
     savePageContent: (innerFunction) => {
       dispatch(savePageContent(innerFunction));
     },
+    editSectionTag: (sectionIndex, tag) => {
+      dispatch(editSectionTag(sectionIndex, tag))
+    }
   };
 };
 
@@ -81,11 +85,12 @@ const mapStateToProps = state => {
   return {
     pageData: state.page.data,
     isEditingPage: state.adminTools.isEditingPage,
+    selectedTag: state.tags.selectedTag,
   };
 };
 
 
-const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, onUpdatePageData, savePageContent, addSection, deleteSection, duplicateSection, addContentItem, updateContentItem, deleteContentItem }) => {
+const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, onUpdatePageData, savePageContent, addSection, deleteSection, duplicateSection, addContentItem, updateContentItem, deleteContentItem, sectionTag, selectedTag, editSectionTag }) => {
 
   const onAddSection = (sectionType) => {
     savePageContent(() => addSection(sectionIndex, sectionType))
@@ -109,6 +114,19 @@ const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, 
 
   const onDeleteContentItem = (sectionIndex, contentIndex) => () => {
     savePageContent(() => deleteContentItem(sectionIndex, contentIndex))
+  }
+
+  const onEditSectionTag = (tag) => {
+    savePageContent(() => editSectionTag(sectionIndex, tag))
+  }
+
+  console.log('selectedTag', selectedTag)
+  console.log('sectionTag', sectionTag)
+
+  if (selectedTag) {
+    if (sectionTag && sectionTag.id !== selectedTag.id) {
+      return <div></div>
+    }
   }
 
   return(
@@ -136,6 +154,8 @@ const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, 
           onDeleteSection={onDeleteSection}
           onAddSection={onAddSection}
           onAddContentItem={onAddContentItem}
+          onEditSectionTag={onEditSectionTag}
+          sectionTag={sectionTag}
         />
       }
     </section>

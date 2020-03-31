@@ -163,6 +163,25 @@ export const page = (state={}, action) => {
         }
       }
 
+    case 'EDIT_SECTION_TAG':
+      console.log("HELLO")
+      newSection = { ...state.data.content.sections[action.sectionIndex] }
+      newSection.tag = action.tag
+      newSectionArr = [...state.data.content.sections]
+      console.log("newSection", newSection)
+      newSectionArr.splice(action.sectionIndex, 1, newSection)
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          content: {
+            ...state.data.content,
+            sections: newSectionArr
+          }
+        }
+      }
+
     case 'ADD_CONTENT_ITEM':
       newSection = { ...state.data.content.sections[action.sectionIndex] }
       emptyContentItem = CONTENT_MAP[action.contentType];
@@ -343,23 +362,6 @@ export const page = (state={}, action) => {
 }
 
 
-export const projectForm = (state={}, action) => {
-  switch (action.type) {
-    case 'UPDATE_PROJECT_FORM':
-      return {
-        ...state,
-        ...action.data
-      }
-    case 'SUBMIT_PROJECT_FORM_SUCCESS':
-      return {
-        ...state,
-        submitted: true,
-      }
-    default:
-      return state
-  }
-}
-
 export const topics = (state={topics: {}}, action) => {
   switch (action.type) {
     case 'SELECT_TOPIC':
@@ -499,7 +501,6 @@ export const appReducers = (state = {}, action) => {
     adminTools: adminTools(state.adminTools, action),
     navigation: navigation(state.navigation, action),
     page: page(state.page, action),
-    projectForm: projectForm(state.projectForm, action),
     topics: topics(state.topics, action),
     categories: categories(state.categories, action),
     pages: pages(state.pages, action),

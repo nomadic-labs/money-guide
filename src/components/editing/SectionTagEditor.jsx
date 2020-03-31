@@ -3,47 +3,34 @@ import { connect } from "react-redux";
 import { orderBy } from 'lodash';
 import MenuItem from "@material-ui/core/MenuItem";
 
-import { saveSelectedTag, closeTagSelectorModal } from '../../redux/actions';
 import T from "../common/Translation"
 
 const mapStateToProps = state => {
   return {
     tags: state.tags.tags,
-    selectedTag: state.tags.selectedTag,
     currentLang: state.navigation.currentLang,
-    pageData: state.page.data,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSelectTag: selection => {
-      dispatch(saveSelectedTag(selection))
-      dispatch(closeTagSelectorModal())
-    }
-  };
-};
-
-class TagSelector extends React.Component {
+class SectionTagEditor extends React.Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector } = this.props;
+    const { tags, currentLang, onEditSectionTag, sectionTag } = this.props;
     const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
     const handleSelect = tag => () => {
-      onSelectTag(tag);
-      if (closeTagSelector) {
-        closeTagSelector()
-      }
+      onEditSectionTag(tag);
     }
+
+    console.log('sectionTag', sectionTag)
 
     return (
       <div>
       {
         orderedTags.map((tag, index) => {
-          const selectedClass = tag === selectedTag ? "selected" : ""
+          const selectedClass = tag === sectionTag ? "selected" : ""
           return (
             <MenuItem onClick={handleSelect(tag)} key={tag.value} className={`navigation-module ${selectedClass}`}>
               {tag.label[currentLang]}
@@ -51,12 +38,12 @@ class TagSelector extends React.Component {
           )
         })
       }
-        <MenuItem onClick={handleSelect(null)} className={`navigation-module ${selectedTag ? '' : 'selected'}`}>
-          <T id="all_tags" />
+        <MenuItem onClick={handleSelect(null)} className={`navigation-module ${sectionTag ? '' : 'selected'}`}>
+          <T id="remove_tag" defaultText="Remove tag" />
         </MenuItem>
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagSelector);
+export default connect(mapStateToProps, null)(SectionTagEditor);

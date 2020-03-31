@@ -67,6 +67,10 @@ export function deleteContentItem(sectionIndex, contentIndex) {
   return { type: "DELETE_CONTENT_ITEM", sectionIndex, contentIndex };
 }
 
+export function editSectionTag(sectionIndex, tag) {
+  return { type: "EDIT_SECTION_TAG", sectionIndex, tag };
+}
+
 export function addSidebarContent(sectionIndex, contentType) {
   return { type: "ADD_SIDEBAR_CONTENT", sectionIndex, contentType };
 }
@@ -796,3 +800,5 @@ export function openTagSelectorModal() {
 export function closeTagSelectorModal() {
   return { type: 'CLOSE_TAG_SELECTOR_MODAL' }
 }
+
+
