@@ -7,7 +7,6 @@ import { EditableText, EditableParagraph } from "react-easy-editables";
 import {
   updatePage,
   loadPageData,
-  openTagSelectorModal
 } from "../redux/actions";
 
 import Layout from "../layouts/default.js";
@@ -15,7 +14,6 @@ import CourseModules from "../components/common/CourseModules"
 import T from "../components/common/Translation"
 import verticalHeader from "../assets/images/header-vertical.jpg"
 import horizontalHeader from "../assets/images/header-horizontal.jpg"
-import TagSelectorModal from "../components/common/TagSelectorModal"
 
 
 const mapDispatchToProps = dispatch => {
@@ -26,9 +24,6 @@ const mapDispatchToProps = dispatch => {
     onLoadPageData: data => {
       dispatch(loadPageData(data));
     },
-    openTagSelectorModal: () => {
-      dispatch(openTagSelectorModal())
-    }
   };
 };
 
@@ -49,12 +44,6 @@ class HomePage extends React.Component {
     };
 
     this.props.onLoadPageData(initialPageData);
-  }
-
-  componentDidMount() {
-    if (!this.props.selectedTag) {
-      this.props.openTagSelectorModal()
-    }
   }
 
   onSave = id => content => {
@@ -124,9 +113,6 @@ class HomePage extends React.Component {
             <EditableParagraph content={content["nawl-description"]} handleSave={this.onSave("nawl-description")} />
           </Container>
         </section>
-
-        <TagSelectorModal />
-
       </Layout>
     );
   }

@@ -10,6 +10,7 @@ import AccountButton from "../components/navigation/AccountButton"
 import Footer from "../components/navigation/Footer"
 import Header from "../components/navigation/Header"
 import CreatePageModal from "../components/editing/CreatePageModal";
+import TagSelectorModal from "../components/common/TagSelectorModal"
 
 import {
   EditablesContext
@@ -20,7 +21,10 @@ import {
   setCurrentLang,
   setPages,
   setTranslations,
-  setTags
+  setTags,
+  saveSelectedTag,
+  closeTagSelectorModal,
+  openTagSelectorModal,
 } from "../redux/actions"
 
 import "../assets/sass/less-cms/base.scss";
@@ -98,6 +102,7 @@ const mapStateToProps = state => {
     currentLang: state.navigation.currentLang,
     translations: state.translations,
     tags: state.tags,
+    selectedTag: state.tags.selectedTag
   };
 };
 
@@ -109,6 +114,10 @@ const mapDispatchToProps = dispatch => {
     setTags: tags => {
       dispatch(setTags(tags));
     },
+    onSelectTag: selection => {
+      dispatch(saveSelectedTag(selection))
+      dispatch(closeTagSelectorModal())
+    },
     setPages: pages => {
       dispatch(setPages(pages));
     },
@@ -118,6 +127,9 @@ const mapDispatchToProps = dispatch => {
     setCurrentLang: lang => {
       dispatch(setCurrentLang(lang));
     },
+    openTagSelectorModal: () => {
+      dispatch(openTagSelectorModal())
+    }
   };
 };
 
@@ -127,6 +139,19 @@ class DefaultLayout extends React.Component {
     const currentLang = this.props.pageData ? this.props.pageData.lang : "en";
     const modulePages = filter(this.props.allPages, page => (page.category === "modules" && page.lang === currentLang))
     const orderedPages = this.orderedPages(modulePages.find(page => page.head))
+
+    if (!this.props.selectedTag) {
+      this.props.openTagSelectorModal()
+    }
+
+    if (localStorage !== undefined) {
+      const savedSelectedTagId = localStorage.getItem('money-guide-province-id')
+
+      if (savedSelectedTagId) {
+        const selectedTag = this.props.allTags[savedSelectedTagId]
+        this.props.onSelectTag(selectedTag)
+      }
+    }
 
     this.props.setOrderedPages(orderedPages)
     this.props.setCurrentLang(currentLang)
@@ -183,6 +208,7 @@ class DefaultLayout extends React.Component {
             <Footer { ...props } />
           </div>
           <CreatePageModal />
+          <TagSelectorModal />
         </EditablesContext.Provider>
       </div>
     )

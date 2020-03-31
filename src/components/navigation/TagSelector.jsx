@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { orderBy } from 'lodash';
 import MenuItem from "@material-ui/core/MenuItem";
 
-import { saveSelectedTag, closeTagSelectorModal } from '../../redux/actions';
+import { saveSelectedTag, closeTagSelectorModal, showNotification } from '../../redux/actions';
 import T from "../common/Translation"
 
 const mapStateToProps = state => {
@@ -19,8 +19,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onSelectTag: selection => {
       dispatch(saveSelectedTag(selection))
+      dispatch(showNotification(`Showing content for ${selection ? selection.label.en : 'all provinces and territories'}`))
       dispatch(closeTagSelectorModal())
-    }
+    },
   };
 };
 
