@@ -120,9 +120,6 @@ const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, 
     savePageContent(() => editSectionTag(sectionIndex, tag))
   }
 
-  console.log('selectedTag', selectedTag)
-  console.log('sectionTag', sectionTag)
-
   if (selectedTag) {
     if (sectionTag && sectionTag.id !== selectedTag.id) {
       return <div></div>
