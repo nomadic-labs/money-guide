@@ -23,11 +23,24 @@ const PopupNavigation = props => {
           <a href={homePage.slug}><T id="home" /></a>
         </div>
       </div>
+
       {
         props.orderedPages.map((page, index) => {
           return <NavigationModule page={page} order={index + 1} key={page.id} />
         })
       }
+
+      <div className="navigation-module">
+        <div className="title">
+          <a href="/"><T id="download_syllabus" /></a>
+        </div>
+      </div>
+
+      <div className="navigation-module">
+        <div className="title">
+          <a href="/"><T id="podcast" /></a>
+        </div>
+      </div>
     </div>
   );
 }

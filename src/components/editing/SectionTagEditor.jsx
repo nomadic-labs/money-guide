@@ -12,38 +12,30 @@ const mapStateToProps = state => {
   };
 };
 
-class SectionTagEditor extends React.Component {
-  constructor(props) {
-    super(props)
+const SectionTagEditor = props => {
+  const { tags, currentLang, onEditSectionTag, sectionTag } = props;
+  const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
+  const handleSelect = tag => () => {
+    onEditSectionTag(tag);
   }
 
-  render() {
-    const { tags, currentLang, onEditSectionTag, sectionTag } = this.props;
-    const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
-    const handleSelect = tag => () => {
-      onEditSectionTag(tag);
+  return (
+    <div>
+    {
+      orderedTags.map((tag, index) => {
+        const selectedClass = tag === sectionTag ? "selected" : ""
+        return (
+          <MenuItem onClick={handleSelect(tag)} key={tag.value} className={`navigation-module ${selectedClass}`}>
+            {tag.label[currentLang]}
+          </MenuItem>
+        )
+      })
     }
-
-    console.log('sectionTag', sectionTag)
-
-    return (
-      <div>
-      {
-        orderedTags.map((tag, index) => {
-          const selectedClass = tag === sectionTag ? "selected" : ""
-          return (
-            <MenuItem onClick={handleSelect(tag)} key={tag.value} className={`navigation-module ${selectedClass}`}>
-              {tag.label[currentLang]}
-            </MenuItem>
-          )
-        })
-      }
-        <MenuItem onClick={handleSelect(null)} className={`navigation-module ${sectionTag ? '' : 'selected'}`}>
-          <T id="remove_tag" defaultText="Remove tag" />
-        </MenuItem>
-      </div>
-    )
-  }
+      <MenuItem onClick={handleSelect(null)} className={`navigation-module ${sectionTag ? '' : 'selected'}`}>
+        <T id="remove_tag" defaultText="Remove tag" />
+      </MenuItem>
+    </div>
+  )
 }
 
 export default connect(mapStateToProps, null)(SectionTagEditor);

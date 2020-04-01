@@ -25,39 +25,34 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class TagSelector extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector } = this.props;
-    const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
-    const handleSelect = tag => () => {
-      onSelectTag(tag);
-      if (closeTagSelector) {
-        closeTagSelector()
-      }
+const TagSelector = props => {
+  const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector } = props;
+  const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
+  const handleSelect = tag => () => {
+    onSelectTag(tag);
+    if (closeTagSelector) {
+      closeTagSelector()
     }
-
-    return (
-      <div>
-      {
-        orderedTags.map((tag, index) => {
-          const selectedClass = tag === selectedTag ? "selected" : ""
-          return (
-            <MenuItem onClick={handleSelect(tag)} key={tag.value} className={`navigation-module ${selectedClass}`}>
-              {tag.label[currentLang]}
-            </MenuItem>
-          )
-        })
-      }
-        <MenuItem onClick={handleSelect(null)} className={`navigation-module ${selectedTag ? '' : 'selected'}`}>
-          <T id="all_tags" />
-        </MenuItem>
-      </div>
-    )
   }
+
+  return (
+    <div>
+    {
+      orderedTags.map((tag, index) => {
+        const selectedClass = tag === selectedTag ? "selected" : ""
+        return (
+          <MenuItem onClick={handleSelect(tag)} key={tag.value} className={`navigation-module ${selectedClass}`}>
+            {tag.label[currentLang]}
+          </MenuItem>
+        )
+      })
+    }
+      <MenuItem onClick={handleSelect(null)} className={`navigation-module ${selectedTag ? '' : 'selected'}`}>
+        <T id="all_tags" />
+      </MenuItem>
+    </div>
+  )
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TagSelector);

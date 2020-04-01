@@ -170,8 +170,6 @@ class Footer extends React.Component {
                 >
                   <T id="share" />
                 </button>
-                <button><T id="download_syllabus" /></button>
-                <button><T id="podcast" /></button>
                 {
                   Object.keys(translations).map(key => {
                     if (translations[key]) {
@@ -218,8 +216,6 @@ class Footer extends React.Component {
               >
                 <T id="share" />
               </button>
-              <button><T id="download_syllabus" /></button>
-              <button><T id="podcast" /></button>
               {
                 Object.keys(translations).map(key => {
                   if (translations[key]) {

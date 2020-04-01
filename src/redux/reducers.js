@@ -118,7 +118,7 @@ export const page = (state={}, action) => {
 
     case 'ADD_SECTION':
       newSectionArr = [...state.data.content.sections];
-      newSection = SECTION_MAP[action.sectionType];
+      newSection = cloneDeep(SECTION_MAP[action.sectionType]);
       newSectionArr.splice((action.sectionIndex + 1), 0, newSection);
       return {
         ...state,
@@ -164,11 +164,9 @@ export const page = (state={}, action) => {
       }
 
     case 'EDIT_SECTION_TAG':
-      console.log("HELLO")
       newSection = { ...state.data.content.sections[action.sectionIndex] }
       newSection.tag = action.tag
       newSectionArr = [...state.data.content.sections]
-      console.log("newSection", newSection)
       newSectionArr.splice(action.sectionIndex, 1, newSection)
 
       return {

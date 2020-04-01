@@ -34,6 +34,21 @@
     .page-wrapper {
       padding-bottom: 37px; /*footer height*/
     }
+
+    section, section.highlight {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .module-header {
+      margin-top: 2rem;
+    }
+
+    footer {
+      .footer-left {
+        border-right: none;
+      }
+    }
   }
 }
 
