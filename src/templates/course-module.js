@@ -64,14 +64,6 @@ class CourseModulePage extends React.Component {
     this.props.onLoadPageData(initialPageData);
   }
 
-  // componentDidMount() {
-  //   const savedSelectedTagId = localStorage.getItem('money-guide-province-id')
-  //   if (savedSelectedTagId) {
-  //     const selectedTag = this.props.tags[savedSelectedTagId]
-  //     this.props.onSelectTag(selectedTag)
-  //   }
-  // }
-
   onSave = id => content => {
     this.props.onUpdatePageData(this.props.data.pages.id, id, content);
   };
@@ -104,13 +96,14 @@ class CourseModulePage extends React.Component {
             <h1 className="underline">{pageData.title}</h1>
           </header>
 
+        {content.headerImage &&
           <EditableImageUpload
             styles={{ container: {display: 'flex', marginBottom: '40px'} }}
             onSave={ this.onUpdateHeaderImage }
             uploadImage={ uploadImage }
             content={ content.headerImage || { imageSrc: null } }
             maxSize={1024 * 1024 * 12}
-          />
+          />}
         </Container>
 
         {

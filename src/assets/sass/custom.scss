@@ -89,6 +89,18 @@ body .nl-page {
     }
   }
 
+  .header-image {
+    display: flex;
+    height: 100%;
+    padding: 2rem;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .logo {
     width: 120px;
     height: auto;
@@ -101,21 +113,13 @@ body .nl-page {
 
   .navbar {
     padding: 0.5rem 1rem;
-    position: absolute;
+    background-color: $black;
+    position: static;
     top: 0;
     width: 100%;
-    background: transparent;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-
-    .logo .dark {
-      display: block;
-    }
-
-    .logo .light {
-      display: none;
-    }
 
     &.module {
       position: static;
@@ -138,13 +142,23 @@ body .nl-page {
       .title-print {
         font-size: 1.1rem;
       }
+    }
 
-      .logo .light {
-        display: block;
+    .fly-away {
+      width: 180px;
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 46px;
+        margin-right: 0.5rem;
       }
 
-      .logo .dark {
-        display: none;
+      a {
+        color: $white;
+        font-size: 1rem;
+        font-weight: 400;
+        display: flex;
       }
     }
   }
@@ -361,31 +375,13 @@ body .nl-page {
   }
 
   #landing {
-    text-align: center;
-    padding-top: 6%;
-    padding-bottom: 16%;
-    height: calc(100vh - 50px);
-
-    h1 {
-      color: $tertiary-color;
-      font-family: $title-font;
-      text-transform: lowercase;
-      font-size: calc(40px + 6vw);
-      line-height: 1.2;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-weight: normal;
-    }
-
-    .landing-subtitle {
-      color: $tertiary-color;
-      font-family: $body-font;
-      font-size: calc(20px + 1vw);
-    }
+    padding: 2rem;
+    padding-top: 0;
   }
 
   .course-title {
     padding: 2rem 1rem;
+    height: 100%;
 
     .title {
       width: fit-content;
@@ -878,7 +874,6 @@ body .nl-page {
     border-radius: 0;
     border: 1px solid $black;
     width: 400px;
-    max-width: 400px;
   }
 
   .MuiList-padding {

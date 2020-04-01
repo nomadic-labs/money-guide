@@ -171,6 +171,7 @@ class Footer extends React.Component {
                   <T id="share" />
                 </button>
                 <button><T id="download_syllabus" /></button>
+                <button><T id="podcast" /></button>
                 {
                   Object.keys(translations).map(key => {
                     if (translations[key]) {
@@ -204,6 +205,13 @@ class Footer extends React.Component {
           >
             <div className="d-flex align-center footer-left">
               <button
+                onClick={openTagSelector}
+                aria-owns={tagAnchor ? "tag-selector" : null}
+                aria-haspopup="true"
+              >
+                <T id="select_province" />
+              </button>
+              <button
                 onClick={openShareButtons}
                 aria-owns={shareAnchor ? "share-buttons" : null}
                 aria-haspopup="true"
@@ -211,6 +219,7 @@ class Footer extends React.Component {
                 <T id="share" />
               </button>
               <button><T id="download_syllabus" /></button>
+              <button><T id="podcast" /></button>
               {
                 Object.keys(translations).map(key => {
                   if (translations[key]) {

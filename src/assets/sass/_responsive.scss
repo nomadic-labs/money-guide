@@ -26,8 +26,9 @@
 @media (max-width: 960px) {
   body .nl-page {
     #landing {
-      height: calc(100vh - 42px);
-      padding-top: 20%;
+      .header-image {
+        padding: 1rem;
+      }
     }
 
     .page-wrapper {
@@ -40,59 +41,27 @@
 
 @media (max-width: 600px) {
   body .nl-page {
+    #landing {
+      padding: 0;
+
+      .header-image {
+        padding: 0;
+      }
+
+      .title {
+        text-align: center;
+      }
+    }
+
     .bg-image {
       background-image: url("../images/header-vertical.jpg");
     }
 
     .navbar {
-      background-color: $black;
-      position: static;
-      justify-content: center;
-
       &.module {
-        justify-content: center;
         .site-title {
           display: none;
         }
-      }
-
-      .logo .dark {
-        display: none;
-      }
-
-      .logo .light {
-        display: block;
-      }
-    }
-
-    .title-main {
-      display: none;
-    }
-
-    .title-mobile {
-      display: block;
-    }
-  }
-}
-
-
-@media (orientation:portrait) {
-  body .nl-page {
-    .bg-image {
-      background-image: url("../images/header-vertical.jpg");
-    }
-
-    .navbar {
-      background-color: $black;
-      position: static;
-      justify-content: center;
-
-      .logo .dark {
-        display: none;
-      }
-
-      .logo .light {
-        display: block;
       }
     }
 

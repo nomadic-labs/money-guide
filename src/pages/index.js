@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { connect } from "react-redux";
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { EditableText, EditableParagraph } from "react-easy-editables";
 
 import {
@@ -12,8 +13,7 @@ import {
 import Layout from "../layouts/default.js";
 import CourseModules from "../components/common/CourseModules"
 import T from "../components/common/Translation"
-import verticalHeader from "../assets/images/header-vertical.jpg"
-import horizontalHeader from "../assets/images/header-horizontal.jpg"
+import headerImage from '../assets/images/header-home.jpg'
 
 
 const mapDispatchToProps = dispatch => {
@@ -55,24 +55,32 @@ class HomePage extends React.Component {
 
     return (
       <Layout light={true} location={this.props.location}>
-        <div className="bg-image title-main">
-          <img src={horizontalHeader} alt="" />
-        </div>
-        <div className="title-mobile">
-          <img src={verticalHeader} alt="" />
-          <div className="bg-dark course-title">
-            <div className="text-light text-center title">
-              <h1><T id="site_title" /></h1>
-            </div>
-          </div>
-        </div>
+        <section id="landing" className="bg-dark">
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <div className="header-image">
+                  <img src={headerImage} alt="" />
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <div className="bg-dark course-title">
+                  <div className="text-light title">
+                    <h1><T id="site_title" /></h1>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+        </section>
 
         <section id="about" className="wow fadeIn">
           <Container maxWidth="md">
             <h2 className="underline">
               <EditableText content={content["about-title"]} handleSave={this.onSave("about-title")} />
             </h2>
-            <EditableParagraph content={content["about-description"]} handleSave={this.onSave("about-description")} />
+            <h3 className="subheading">
+              <EditableText content={content["about-intro-heading"]} handleSave={this.onSave("about-intro-heading")} />
+            </h3>
+            <EditableParagraph content={content["about-intro-text"]} handleSave={this.onSave("about-intro-text")} />
 
             <h3 className="subheading">
               <EditableText content={content["about-disclaimer-heading"]} handleSave={this.onSave("about-disclaimer-heading")} />
