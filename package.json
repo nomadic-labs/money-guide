@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Sharon Kennedy <sharon@nomadiclabs.com>",
   "engines": {
-    "node": "^8.12.0"
+    "node": "^12.16.1"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
@@ -51,13 +51,16 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_ACTIVE_ENV=staging gatsby build",
+    "build:staging": "GATSBY_ACTIVE_ENV=staging gatsby build",
+    "build:production": "GATSBY_ACTIVE_ENV=production gatsby build",
     "develop": "GATSBY_ACTIVE_ENV=development gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "rm -rf .cache",
     "deploy:staging": "GATSBY_ACTIVE_ENV=staging gatsby build && firebase use money-guide-staging && firebase deploy",
-    "deploy:production": "GATSBY_ACTIVE_ENV=production gatsby build && firebase use money-guide && firebase deploy"
+    "deploy:production": "GATSBY_ACTIVE_ENV=production gatsby build && firebase use money-guide && firebase deploy",
+    "serve": "GATSBY_ACTIVE_ENV=staging gatsby serve"
   },
   "devDependencies": {
     "prettier": "^1.8.2"

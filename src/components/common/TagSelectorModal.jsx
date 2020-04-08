@@ -28,7 +28,6 @@ const mapDispatchToProps = dispatch => {
 
 const TagSelectorModal = props => {
   const { openModal, onCloseTagSelectorModal } = props;
-  console.log('openModal', openModal)
 
   return(
     <Dialog open={openModal} onClose={onCloseTagSelectorModal} aria-labelledby="tag-selector-dialogue" className="tag-selector-modal">

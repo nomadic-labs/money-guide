@@ -232,13 +232,6 @@ const LayoutContainer = props => (
             }
           }
         }
-        allTranslations {
-          nodes {
-            id
-            en
-            fr
-          }
-        }
         allTags {
           nodes {
             id
@@ -247,6 +240,13 @@ const LayoutContainer = props => (
               en
               fr
             }
+          }
+        }
+        allTranslations {
+          nodes {
+            id
+            en
+            fr
           }
         }
       }
