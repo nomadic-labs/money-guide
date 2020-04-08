@@ -51,7 +51,7 @@ module.exports = {
           {
             type: "Tags",
             path: "tags",
-          },
+          }
         ]
       }
     },
