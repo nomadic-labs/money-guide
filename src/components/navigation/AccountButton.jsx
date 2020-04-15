@@ -60,10 +60,6 @@ class AccountButton extends React.Component {
       } else {
         this.props.userLoggedOut();
       }
-
-      if (this.props.showRegistrationModal) {
-        this.props.onToggleRegistrationModal();
-      }
     });
   }
 
@@ -229,7 +225,6 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: state.adminTools.isLoggedIn,
     user: state.adminTools.user,
-    showRegistrationModal: state.adminTools.showRegistrationModal,
     isEditingPage: state.adminTools.isEditingPage,
     allowEditing: allowEditing,
     allowDuplicate: allowDuplicate,
