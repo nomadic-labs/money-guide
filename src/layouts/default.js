@@ -156,8 +156,8 @@ class DefaultLayout extends React.Component {
           </title>
           <meta
             charSet="utf-8"
-            description="An open online course about feminist law reform from the National Association of Women and the Law"
-            keywords="law, law reform, feminist, feminism, NAWL, National Association of Women and the Law, FLR 101"
+            description="A woman’s guide to money, relationships and the law"
+            keywords="money, relationships, law, feminism, NAWL, National Association of Women and the Law"
             viewport="width=device-width,initial-scale=1.0,maximum-scale=1"
           />
           <link rel="icon" href={favicon} type="image/x-icon" />
@@ -193,6 +193,7 @@ const LayoutContainer = props => (
               category
               next
               head
+              content
             }
           }
         }

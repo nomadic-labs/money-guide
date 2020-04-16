@@ -13,13 +13,9 @@ const mapStateToProps = state => {
 
 
 const CourseModules = props => (
-  <div>
-    {
-      props.orderedPages.map((page, index) => {
-        return <CourseModule page={page} order={index + 1} key={page.id} {...props} />
-      })
-    }
-  </div>
+  props.orderedPages.map((page, index) => {
+    return <CourseModule page={page} order={index + 1} key={page.id} {...props} />
+  })
 )
 
 

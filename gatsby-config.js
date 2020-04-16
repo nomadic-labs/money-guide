@@ -19,8 +19,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Feminist Law Reform 101",
-        short_name: "Feminist Law Reform 101",
+        name: "Money and the Law Guide",
+        short_name: "Money and the Law Guide",
         start_url: "/",
         background_color: "#000",
         theme_color: "#FCB239", // yellow
