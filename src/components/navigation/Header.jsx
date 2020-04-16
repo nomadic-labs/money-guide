@@ -1,10 +1,13 @@
 import React from "react";
 import lightLogo from "../../assets/images/nawl-logo-white.svg"
-import rocketShip from "../../assets/images/fly-away.svg"
+import icon from "../../assets/images/run.svg"
 import T from "../common/Translation"
 
 const Header = props => {
   const moduleClass = props.pageData && props.pageData.template === "course-module.js" ? "module" : ""
+  const onClickLeave = () => {
+    window.location.replace("https://www.google.com");
+  }
 
   return (
     <nav className={`navbar ${moduleClass}`}>
@@ -12,10 +15,10 @@ const Header = props => {
         <a href={'https://nawl.ca/'} className="light"><img src={lightLogo} alt="NAWL | ANFD" /></a>
       </div>
       <div className="fly-away">
-        <a href={'https://www.cbc.ca/news'} className="light">
-          <img src={rocketShip} alt={<T id="fly_away" defaultText="Fly me to another site" />} />
-          <span><T id="fly_away" defaultText="Fly me to another site" /></span>
-        </a>
+        <button onClick={onClickLeave} className="exit-button">
+          <span><T id="fly_away" defaultText="Leave quickly" /></span>
+          <img src={icon} alt={<T id="fly_away" defaultText="Fly me to another site" />} />
+        </button>
       </div>
     </nav>
   );

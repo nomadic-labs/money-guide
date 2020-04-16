@@ -13,7 +13,8 @@ import CreatePageModal from "../components/editing/CreatePageModal";
 import TagSelectorModal from "../components/common/TagSelectorModal"
 
 import {
-  EditablesContext
+  EditablesContext,
+  theme
 } from 'react-easy-editables';
 
 import {
@@ -32,53 +33,16 @@ import "../assets/sass/custom.scss";
 
 import favicon from '../assets/images/icon.png'
 
-export const theme = {
+export const editorTheme = {
+  ...theme,
   primaryColor: "#E57A68",
-  fontFamily: "Montserrat, sans-serif",
-  fontSize: "14px",
-  editContainer: {
-    backgroundColor: "rgba(255,255,255,0.3)",
-    border: "1px solid black",
-    position: "relative",
-    padding: "8px",
-  },
   editContainerHighlight: {
-    backgroundColor: "rgba(255,255,255,0.9)",
-    border: "1px solid #E57A68",
-    zIndex: "2500",
+    ...theme.editContainerHighlight,
+    outline: "1px solid #E57A68",
   },
   actions: {
-    position: "absolute",
-    left: "2px",
-    top: "2px",
-    display: "flex",
-    alignItems: "center",
-    zIndex: "99",
-  },
-  button: {
-    border: "1px solid #000",
-    color: "black",
-    backgroundColor: "#fff",
-    height: "18px",
-    width: "18px",
-    borderRadius: "30px",
-    cursor: "pointer",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: "4px",
-    "&:hover": {
-      backgroundColor: "#eee"
-    }
-  },
-  saveButton: {
+    ...theme.actions,
     backgroundColor: "#E57A68",
-  },
-  cancelButton: {
-    backgroundColor: "#E57A68",
-  },
-  icon: {
-    fontSize: "14px"
   }
 };
 
@@ -201,7 +165,7 @@ class DefaultLayout extends React.Component {
         <Notification />
         <AccountButton />
 
-        <EditablesContext.Provider value={ { theme: theme, showEditingControls: props.isEditingPage } }>
+        <EditablesContext.Provider value={ { theme: editorTheme, showEditingControls: props.isEditingPage } }>
           <div className="page-wrapper">
             <Header { ...props } />
             <main>{props.children}</main>
