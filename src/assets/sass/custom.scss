@@ -146,6 +146,7 @@ body .nl-page {
       width: 180px;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
 
       .exit-button {
         background-color: $primary-color;
