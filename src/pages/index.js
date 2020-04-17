@@ -57,18 +57,22 @@ class HomePage extends React.Component {
       <Layout light={true} location={this.props.location}>
         <section id="landing" className="bg-dark">
             <Grid container>
-              <Grid item xs={12} sm={6}>
-                <div className="header-image">
+
+              <Grid>
+
+              <div className="header-image">
                   <img src={headerImage} alt="" />
                 </div>
-              </Grid>
-              <Grid item xs={12} sm={6}>
+                </Grid>
+
+                <Grid >
                 <div className="bg-dark course-title">
                   <div className="text-light title">
                     <h1><T id="site_title" /></h1>
                   </div>
-                </div>
+                  </div>
               </Grid>
+
             </Grid>
         </section>
 
