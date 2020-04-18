@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { orderBy } from 'lodash';
 import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+
 
 import { saveSelectedTag, closeTagSelectorModal, showNotification } from '../../redux/actions';
 import T from "../common/Translation"
@@ -26,7 +28,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const TagSelector = props => {
-  const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector } = props;
+  const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector, tagAnchor } = props;
   const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
   const handleSelect = tag => () => {
     onSelectTag(tag);
@@ -36,7 +38,23 @@ const TagSelector = props => {
   }
 
   return (
-    <div>
+    <Menu
+      id="tag-selector"
+      role="menu"
+      anchorEl={tagAnchor}
+      open={Boolean(tagAnchor)}
+      onClose={closeTagSelector}
+      className="tag-selector"
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+    >
     {
       orderedTags.map((tag, index) => {
         const selectedClass = tag === selectedTag ? "selected" : ""
@@ -50,7 +68,7 @@ const TagSelector = props => {
       <MenuItem onClick={handleSelect(null)} className={`navigation-module ${selectedTag ? '' : 'selected'}`}>
         <T id="all_tags" />
       </MenuItem>
-    </div>
+    </Menu>
   )
 
 }

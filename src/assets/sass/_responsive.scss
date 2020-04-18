@@ -13,7 +13,7 @@
       background: white;
 
       button, a {
-        font-size: 0.8rem;
+        font-size: 0.8rem !important;
       }
 
       #toc-btn {
@@ -47,6 +47,10 @@
     footer {
       .footer-left {
         border-right: none;
+      }
+
+      .footer-right {
+        justify-content: flex-start;
       }
     }
   }

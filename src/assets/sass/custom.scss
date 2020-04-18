@@ -159,7 +159,7 @@ body .nl-page {
         position: fixed;
         padding: 0.5rem;
         z-index: 99;
-        
+
       }
 
       img {
@@ -419,7 +419,7 @@ body .nl-page {
   }
 
   #landing {
-    padding: 0rem;    
+    padding: 0rem;
   }
 
   .course-title {
@@ -860,7 +860,8 @@ body .nl-page {
 
   .MuiMenu-list {
     background-color: $white;
-    padding: 1rem !important;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .navigation-module {
@@ -868,6 +869,7 @@ body .nl-page {
     border-bottom: 4px solid $secondary-color;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    white-space: unset;
 
     &:last-of-type {
       border-bottom: none;

@@ -5,9 +5,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Menu from "@material-ui/core/Menu";
 import Popover from "@material-ui/core/Popover";
-import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Fab from '@material-ui/core/Fab';
 
 import {
@@ -72,44 +70,8 @@ class Footer extends React.Component {
 
     return (
       <footer>
-        <Menu
-          id="toc"
-          role="menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={closeMenu}
-          className="table-of-contents"
-          elevation={0}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-        >
-          <PopupNavigation />
-        </Menu>
-        <Menu
-          id="tag-selector"
-          role="menu"
-          anchorEl={tagAnchor}
-          open={Boolean(tagAnchor)}
-          onClose={closeTagSelector}
-          className="tag-selector"
-          elevation={0}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-        >
-          <TagSelector closeTagSelector={closeTagSelector} />
-        </Menu>
+        <PopupNavigation anchorEl={anchorEl} closeMenu={closeMenu} />
+        <TagSelector closeTagSelector={closeTagSelector} tagAnchor={tagAnchor} />
         <Popover
           id="share-buttons"
           role="menu"
@@ -147,14 +109,15 @@ class Footer extends React.Component {
             </CardContent>
           </Card>
         </Popover>
-        <Hidden smDown>
           <Container maxWidth="md">
             <Grid container>
-              <Grid item xs={false} md={4} className="footer-section footer-left">
-                <Link to={home} className="site-title no-text-decoration">
-                  <T id="site_title" />
-                </Link>
-              </Grid>
+              <Hidden smDown>
+                <Grid item xs={false} md={4} className="footer-section footer-left">
+                  <Link to={home} className="site-title no-text-decoration">
+                    <T id="site_title" />
+                  </Link>
+                </Grid>
+              </Hidden>
               <Grid item xs={12} md={8} className="footer-section footer-right">
                 <button
                   onClick={openTagSelector}
@@ -189,58 +152,13 @@ class Footer extends React.Component {
               <Fab
                 id="toc-btn"
                 onClick={openMenu}
-                aria-owns={anchorEl ? "toc" : null}
+                aria-controls="toc"
                 aria-haspopup="true"
               >
                 <T id="table_of_contents" />
               </Fab>
             </Grid>
           </Container>
-        </Hidden>
-        <Hidden mdUp>
-          <BottomNavigation
-            style={{ height: "auto", justifyContent: "space-between", alignItems: "center"}}
-          >
-            <div className="d-flex align-center footer-left">
-              <button
-                onClick={openTagSelector}
-                aria-owns={tagAnchor ? "tag-selector" : null}
-                aria-haspopup="true"
-              >
-                <T id="select_province" />
-              </button>
-              <button
-                onClick={openShareButtons}
-                aria-owns={shareAnchor ? "share-buttons" : null}
-                aria-haspopup="true"
-              >
-                <T id="share" />
-              </button>
-              {
-                Object.keys(translations).map(key => {
-                  if (translations[key]) {
-                    const language = LANGUAGE_OPTIONS.find(o => o.value === key) || {}
-                    return(
-                      <Link key={key} to={translations[key].slug}>
-                        {language.label}
-                      </Link>
-                    )
-                  } else {
-                    return null
-                  }
-                })
-              }
-              </div>
-              <Fab
-                id="toc-btn"
-                onClick={openMenu}
-                aria-owns={anchorEl ? "toc" : null}
-                aria-haspopup="true"
-              >
-                <T id="table_of_contents" />
-              </Fab>
-          </BottomNavigation>
-        </Hidden>
       </footer>
     );
   }
