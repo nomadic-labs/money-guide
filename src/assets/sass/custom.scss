@@ -820,7 +820,7 @@ body .nl-page {
 
   .course-module {
     h3 {
-      font-size: calc(24px + 1.2vw);
+      font-size: calc(20px + 0.925vw);
       margin-top: 0;
       margin-bottom: 0.5rem;
       color: $black;
@@ -832,6 +832,11 @@ body .nl-page {
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
       font-family: $header-font;
+    }
+
+    .card-body {
+      margin-left: 20px;
+      padding-bottom: 10px;
     }
 
     .card-actions {

@@ -101,3 +101,8 @@ export const HOME_URLS = {
   en: "/",
   fr: "/fr/"
 }
+
+export const REFERENCE_URLS = {
+  "definition-of-terms": true,
+  "frequently-asked-questions": true
+}

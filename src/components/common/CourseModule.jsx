@@ -8,11 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import { Link } from "gatsby"
 import T from "./Translation"
+import { REFERENCE_URLS } from "../../utils/constants";
 
 
 const CourseModule = ({ page, order, translations, currentLang }) => {
   const content = JSON.parse(page.content)
-  console.log('content', content)
   const headerImageSrc = content.headerImage ? content.headerImage.imageSrc : null
 
   return (
@@ -25,14 +25,17 @@ const CourseModule = ({ page, order, translations, currentLang }) => {
             <CardMedia
               image={headerImageSrc}
               title={"Header image"}
-              style={{ height: '100%', backgroundPosition: 'left' }}
+              style={{ height: '240px', width: '240px', backgroundPosition: 'left' }}
             />
           </Grid>
         }
         </Hidden>
-        <Grid item xs={12} md={headerImageSrc ? 9 : 12}>
+        <Grid item xs={12} md={headerImageSrc ? 9 : 12} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <CardContent className="card-body">
-            <p><T id="module" />{` ${order}`}</p>
+            {
+              !REFERENCE_URLS[page.id] &&
+              <p><T id="module" />{` ${order}`}</p>
+            }
             <h3>{page.title}</h3>
           </CardContent>
           <CardActions className="card-actions">

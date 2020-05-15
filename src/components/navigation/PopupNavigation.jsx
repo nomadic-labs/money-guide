@@ -46,7 +46,7 @@ const PopupNavigation = props => {
         orderedPages.map((page, index) => (
           <MenuItem className="navigation-module" key={page.id} component={Link} to={page.slug}>
             <div className="title">
-              <T id="module" />{` ${index + 1}: ${page.title}`}
+              {page.title}
             </div>
           </MenuItem>
         ))

@@ -30,12 +30,14 @@ const mapDispatchToProps = dispatch => {
 const TagSelector = props => {
   const { selectedTag, tags, onSelectTag, currentLang, closeTagSelector, tagAnchor } = props;
   const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
+
   const handleSelect = tag => () => {
     onSelectTag(tag);
     if (closeTagSelector) {
       closeTagSelector()
     }
   }
+
 
   return (
     <Menu
