@@ -13,10 +13,11 @@ const mapStateToProps = state => {
 };
 
 const SectionTagEditor = props => {
-  const { tags, currentLang, onEditSectionTag, sectionTag } = props;
+  const { tags, currentLang, onEditSectionTag, sectionTag, closeTagEditor } = props;
   const orderedTags = orderBy(tags, tag => tag.label[currentLang]);
   const handleSelect = tag => () => {
     onEditSectionTag(tag);
+    closeTagEditor();
   }
 
   return (
