@@ -3,7 +3,11 @@
 @media (max-width: 992px) {
   body .nl-page {
     h1 {
-      font-size: calc(22px + 1vw);
+      font-size: calc(22px + 1.5vw);
+    }
+
+    h2 {
+      font-size: calc(18px + 1.5vw);
     }
 
     footer {

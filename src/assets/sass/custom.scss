@@ -3,7 +3,7 @@
 
 body .nl-page {
   font-family: $body-font;
-  font-size: calc(16px + 0.3vw);
+  font-size: 14px;
   color: $black;
   background-color: $white;
 
@@ -18,14 +18,19 @@ body .nl-page {
   }
 
   h2 {
-    font-size: calc(20px + 2vw);
+    font-size: calc(20px + 1.5vw);
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
 
   h3 {
-    font-size: calc(20px + 1vw);
+    font-size: calc(18px + 0.25vw);
+
+    &.subheading {
+      font-size: calc(18px + 0.75vw);
+    }
   }
+
 
   h4 {
     font-size: calc(18px + 0.5vw);
@@ -59,7 +64,7 @@ body .nl-page {
 
   .paragraph, p {
     font-family: $body-font;
-    font-size: calc(16px + 0.3vw);
+    font-size: calc(14px + 0.25vw);
 
     a {
       color: inherit;
@@ -296,7 +301,7 @@ body .nl-page {
       top: -60px;
       height: 75px;
       width: 75px;
-      font-size: 0.8rem;
+      font-size: 1em;
       border: 1px solid $black;
       line-height: 1.1;
     }
@@ -377,6 +382,7 @@ body .nl-page {
     p {
       font-family: $header-font;
       margin-bottom: 0;
+      font-size: calc(16px + 0.4vw);
     }
   }
 

@@ -51,6 +51,7 @@ const PopupNavigation = props => {
           </MenuItem>
         ))
       }
+      {/*
       <MenuItem className="navigation-module" component={Link} to="/">
         <div className="title">
           <T id="download_syllabus" />
@@ -62,6 +63,7 @@ const PopupNavigation = props => {
           <T id="podcast" />
         </div>
       </MenuItem>
+      */}
     </Menu>
   );
 }
