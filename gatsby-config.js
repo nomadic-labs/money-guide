@@ -8,7 +8,7 @@ require("dotenv").config({
   path: `.env.${activeEnv}`,
 })
 
-const firebaseConfig = require(`./config/firebase-config.${process.env.GATSBY_FIREBASE_ENVIRONMENT}.json`)
+const firestoreConfig = require(`./config/firebase-config.${process.env.GATSBY_FIREBASE_ENVIRONMENT}.json`)
 
 module.exports = {
   siteMetadata: {
@@ -30,14 +30,13 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     {
-      resolve: "gatsby-source-firebase-nl",
+      resolve: "gatsby-source-firestore",
       options: {
-        credential: firebaseConfig.serviceAccountKey,
-        databaseURL: firebaseConfig.databaseURL,
+        credential: firestoreConfig.serviceAccountKey,
         types: [
           {
             type: "Pages",
-            path: "pages",
+            collection: "pages",
             map: node => {
               node.content = JSON.stringify(node.content);
 
@@ -46,11 +45,11 @@ module.exports = {
           },
           {
             type: "Translations",
-            path: "translations",
+            collection: "translations",
           },
           {
             type: "Tags",
-            path: "tags",
+            collection: "tags",
           }
         ]
       }
@@ -60,6 +59,14 @@ module.exports = {
       options: {
         precision: 8,
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "money-guide",
+        protocol: "https",
+        hostname: process.env.GATSBY_HOSTNAME,
+      },
+    },
   ]
 };

@@ -3,7 +3,7 @@
 
 body .nl-page {
   font-family: $body-font;
-  font-size: 14px;
+  font-size: calc(14px + 0.25vw);
   color: $black;
   background-color: $white;
 
