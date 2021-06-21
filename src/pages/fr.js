@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { EditableText, EditableParagraph } from "react-easy-editables";
 
 import {
-  updatePage,
+  updatePageContent,
   loadPageData,
 } from "../redux/actions";
 
@@ -18,8 +18,8 @@ import headerImage from '../assets/images/header-home.jpg'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdatePageData: (page, id, data) => {
-      dispatch(updatePage(page, id, data));
+    onUpdatePageData: (id, data) => {
+      dispatch(updatePageContent(id, data));
     },
     onLoadPageData: data => {
       dispatch(loadPageData(data));
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
   }
 
   onSave = id => content => {
-    this.props.onUpdatePageData("anfd", id, content);
+    this.props.onUpdatePageData(id, content);
   };
 
   render() {
@@ -56,18 +56,22 @@ class HomePage extends React.Component {
       <Layout light={true} location={this.props.location}>
         <section id="landing" className="bg-dark">
             <Grid container>
-              <Grid item xs={12} sm={6}>
+
+              <Grid>
+
                 <div className="header-image">
-                  <img src={headerImage} alt="" />
+                    <img src={headerImage} alt="" />
                 </div>
               </Grid>
-              <Grid item xs={12} sm={6}>
+
+              <Grid >
                 <div className="bg-dark course-title">
                   <div className="text-light title">
                     <h1><T id="site_title" /></h1>
                   </div>
                 </div>
               </Grid>
+
             </Grid>
         </section>
 

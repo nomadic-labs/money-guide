@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { EditableText, EditableParagraph } from "react-easy-editables";
 
 import {
-  updatePage,
+  updatePageContent,
   loadPageData,
 } from "../redux/actions";
 
@@ -18,8 +18,8 @@ import headerImage from '../assets/images/header-home.jpg'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdatePageData: (page, id, data) => {
-      dispatch(updatePage(page, id, data));
+    onUpdatePageData: (id, data) => {
+      dispatch(updatePageContent(id, data));
     },
     onLoadPageData: data => {
       dispatch(loadPageData(data));
@@ -47,10 +47,11 @@ class HomePage extends React.Component {
   }
 
   onSave = id => content => {
-    this.props.onUpdatePageData("nawl", id, content);
+    this.props.onUpdatePageData(id, content);
   };
 
   render() {
+    console.log("this.props", this.props)
     const content = this.props.pageData ? this.props.pageData.content : JSON.parse(this.props.data.pages.content);
 
     return (
@@ -60,17 +61,17 @@ class HomePage extends React.Component {
 
               <Grid>
 
-              <div className="header-image">
-                  <img src={headerImage} alt="" />
+                <div className="header-image">
+                    <img src={headerImage} alt="" />
                 </div>
-                </Grid>
+              </Grid>
 
-                <Grid >
+              <Grid >
                 <div className="bg-dark course-title">
                   <div className="text-light title">
                     <h1><T id="site_title" /></h1>
                   </div>
-                  </div>
+                </div>
               </Grid>
 
             </Grid>

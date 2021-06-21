@@ -9,7 +9,7 @@ import { EditableImageUpload } from "react-easy-editables";
 import { uploadImage } from "../firebase/operations";
 
 import {
-  updatePage,
+  updatePageContent,
   loadPageData,
   updateTitle,
   updateHeaderImage,
@@ -24,8 +24,8 @@ import T from "../components/common/Translation"
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdatePageData: (page, id, data) => {
-      dispatch(updatePage(page, id, data));
+    onUpdatePageData: (id, data) => {
+      dispatch(updatePageContent(id, data));
     },
     onLoadPageData: data => {
       dispatch(loadPageData(data));
@@ -65,7 +65,7 @@ class CourseModulePage extends React.Component {
   }
 
   onSave = id => content => {
-    this.props.onUpdatePageData(this.props.data.pages.id, id, content);
+    this.props.onUpdatePageData(id, content);
   };
 
   onUpdateTitle = content => {

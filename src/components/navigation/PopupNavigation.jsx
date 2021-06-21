@@ -19,6 +19,7 @@ const mapStateToProps = state => {
 const PopupNavigation = props => {
   const homePage = props.currentLang === "en" ? props.pages["nawl"] : props.pages["anfd"]
   const { anchorEl, closeMenu, orderedPages } = props;
+
   return (
     <Menu
       id="toc"

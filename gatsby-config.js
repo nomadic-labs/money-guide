@@ -37,11 +37,6 @@ module.exports = {
           {
             type: "Pages",
             collection: "pages",
-            map: node => {
-              node.content = JSON.stringify(node.content);
-
-              return node
-            },
           },
           {
             type: "Translations",

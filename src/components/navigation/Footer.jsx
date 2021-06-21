@@ -154,6 +154,7 @@ class Footer extends React.Component {
                 onClick={openMenu}
                 aria-controls="toc"
                 aria-haspopup="true"
+                style={currentLang === "fr" ? {fontSize: '1rem'} : {}}
               >
                 <T id="table_of_contents" />
               </Fab>

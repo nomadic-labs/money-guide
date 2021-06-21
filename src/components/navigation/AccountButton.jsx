@@ -1,6 +1,6 @@
 import React from "react";
 import { push, Link } from "gatsby";
-import firebase, { stagingFirebase } from "../../firebase/init";
+import firebase from "../../firebase/init";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button"
 
@@ -10,7 +10,6 @@ import {
   toggleNewPageModal,
   deploy,
   toggleEditing,
-  deployWithStagingContent
 } from "../../redux/actions";
 
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
@@ -40,10 +39,12 @@ class AccountButton extends React.Component {
       if (user) {
         const ref = firebase
           .app()
-          .database()
-          .ref(`users/${user.uid}`);
-        ref.once("value").then(snapshot => {
-          const userData = snapshot.val();
+          .firestore()
+          .collection('users')
+          .doc(user.uid);
+
+        ref.get().then(snapshot => {
+          const userData = snapshot.data();
           if (userData) {
             this.props.userLoggedIn(userData);
           } else {
@@ -59,6 +60,10 @@ class AccountButton extends React.Component {
         });
       } else {
         this.props.userLoggedOut();
+      }
+
+      if (this.props.showRegistrationModal) {
+        this.props.onToggleRegistrationModal();
       }
     });
   }
@@ -187,19 +192,6 @@ class AccountButton extends React.Component {
               </MenuItem>
             )}
 
-            {props.allowEditing && stagingFirebase && (
-              <MenuItem
-                divider
-                disabled={process.env.GATSBY_FIREBASE_ENVIRONMENT !== 'production'}
-                onClick={() => {
-                  props.deployWithStagingContent();
-                  closeMenu();
-                }}
-              >
-                Publish from staging
-              </MenuItem>
-            )}
-
             <MenuItem
               onClick={() => {
                 logout();
@@ -247,9 +239,6 @@ const mapDispatchToProps = dispatch => {
     },
     deploy: () => {
       dispatch(deploy());
-    },
-    deployWithStagingContent: () => {
-      dispatch(deployWithStagingContent());
     },
   };
 };
