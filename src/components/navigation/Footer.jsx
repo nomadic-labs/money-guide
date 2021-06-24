@@ -62,10 +62,10 @@ class Footer extends React.Component {
   render() {
     const { props, openMenu, closeMenu, openTagSelector, closeTagSelector, openShareButtons, closeShareButtons } = this;
     const { anchorEl, shareAnchor, tagAnchor } = this.state;
-    const translations = props.pageData ? props.pageData.translations || {} : {}
+    const pageTranslations = props.pageTranslations || {};
     const shareUrl = props.location ? props.location.href : isClient ? window.location.origin : "";
     const shareTitle = props.pageData ? props.pageData.title : "Feminist Law Reform 101"
-    const currentLang = props.pageData ? props.pageData.lang : "en";
+    const currentLang = props.currentLang
     const home = HOME_URLS[currentLang];
 
     return (
@@ -134,11 +134,11 @@ class Footer extends React.Component {
                   <T id="share" />
                 </button>
                 {
-                  Object.keys(translations).map(key => {
-                    if (translations[key]) {
+                  Object.keys(pageTranslations).map(key => {
+                    if (pageTranslations[key]) {
                       const language = LANGUAGE_OPTIONS.find(o => o.value === key) || {}
                       return(
-                        <Link key={key} to={translations[key].slug}>
+                        <Link key={key} to={pageTranslations[key].slug}>
                           {language.label}
                         </Link>
                       )

@@ -6,7 +6,7 @@ import { findIndex } from "lodash"
 
 import { connect } from "react-redux";
 import { EditableImageUpload } from "react-easy-editables";
-import { uploadImage } from "../firebase/operations";
+import { uploadFile as uploadImage } from "../aws/operations";
 
 import {
   updatePageContent,
@@ -48,20 +48,23 @@ const mapStateToProps = state => {
     orderedPages: state.pages.orderedPages,
     pages: state.pages.pages,
     currentLang: state.navigation.currentLang,
-    tags: state.tags.tags
+    tags: state.tags.tags,
+    isEditingPage: state.adminTools.isEditingPage,
   };
 };
 
 
 class CourseModulePage extends React.Component {
-  constructor(props) {
-    super(props)
-    const initialPageData = {
-      ...this.props.data.pages,
-      content: JSON.parse(this.props.data.pages.content)
-    };
 
-    this.props.onLoadPageData(initialPageData);
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isEditingPage && this.props.isEditingPage) {
+      const initialPageData = {
+        ...this.props.data.pages,
+        content: JSON.parse(this.props.data.pages.content)
+      };
+
+      this.props.onLoadPageData(initialPageData);
+    }
   }
 
   onSave = id => content => {
@@ -73,7 +76,7 @@ class CourseModulePage extends React.Component {
   }
 
   onUpdateHeaderImage = content => {
-    this.props.onUpdateHeaderImage(content)
+    this.props.onUpdateHeaderImage({ imageSrc: content.imageSrc })
   }
 
   render() {
@@ -84,7 +87,7 @@ class CourseModulePage extends React.Component {
     const nextModule = this.props.pages[pageData.next];
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} lang={this.props.data.pages.lang} pageTranslations={this.props.data.pages.translations}>
         <Helmet>
           <title>{pageData.title}</title>
           <meta description={pageData.description} />

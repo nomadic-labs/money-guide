@@ -14,7 +14,7 @@ import {
 } from 'react-easy-editables';
 
 import T from './Translation'
-import { uploadImage } from "../../firebase/operations"
+import { uploadFile as uploadImage } from "../../aws/operations";
 
 class ResourceEditor extends React.Component {
   constructor(props) {

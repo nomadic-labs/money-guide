@@ -99,9 +99,13 @@ const mapDispatchToProps = dispatch => {
 
 
 class DefaultLayout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.props.setCurrentLang(this.props.lang || "en")
+  }
+
   componentDidMount() {
-    const currentLang = this.props.pageData ? this.props.pageData.lang : "en";
-    const modulePages = filter(this.props.allPages, page => (page.category === "modules" && page.lang === currentLang))
+    const modulePages = filter(this.props.allPages, page => (page.category === "modules" && page.lang === this.props.lang))
     const orderedPages = this.orderedPages(modulePages.find(page => page.head))
 
     if (!this.props.selectedTag) {
@@ -118,7 +122,6 @@ class DefaultLayout extends React.Component {
     }
 
     this.props.setOrderedPages(orderedPages)
-    this.props.setCurrentLang(currentLang)
     this.props.setPages(this.props.allPages)
     this.props.setTranslations(this.props.allTranslations)
     this.props.setTags(this.props.allTags)

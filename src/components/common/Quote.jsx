@@ -7,7 +7,7 @@ import {
   Editable
 } from 'react-easy-editables';
 
-import { uploadImage } from "../../firebase/operations"
+import { uploadFile as uploadImage } from "../../aws/operations";
 
 
 class QuoteEditor extends React.Component {

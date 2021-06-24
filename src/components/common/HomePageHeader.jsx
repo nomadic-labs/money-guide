@@ -1,6 +1,6 @@
 import React from "react";
 import { EditableText, EditableBackgroundImage, EditableParagraph, EditableLink } from "react-easy-editables";
-import { uploadImage } from "../../firebase/operations";
+import { uploadFile as uploadImage } from "../../aws/operations";
 import Branch from "../../assets/images/branch_dark_blue.svg";
 
 const defaultHeader = "https://firebasestorage.googleapis.com/v0/b/tru-web.appspot.com/o/images%2Fimperial-oil.jpg?alt=media&token=f9072b5c-161a-4bd8-bd61-b3ad3b9c5853";

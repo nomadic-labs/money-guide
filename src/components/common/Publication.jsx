@@ -10,7 +10,7 @@ import {
   Editable
 } from 'react-easy-editables';
 
-import { uploadImage, uploadFile } from "../../firebase/operations"
+import { uploadFile as uploadImage } from "../../aws/operations";
 
 class PublicationEditor extends React.Component {
   constructor(props) {

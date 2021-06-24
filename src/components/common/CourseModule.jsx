@@ -12,7 +12,6 @@ import { REFERENCE_URLS } from "../../utils/constants";
 
 
 const CourseModule = ({ page, order, translations, currentLang }) => {
-  console.log("page.content", page.content)
   const content = typeof(page.content) === "string" ? JSON.parse(page.content) : page.content
   const headerImageSrc = content.headerImage ? content.headerImage.imageSrc : null
 

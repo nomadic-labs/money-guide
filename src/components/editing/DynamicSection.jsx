@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Container from "@material-ui/core/Container";
 
 import {
-  updatePage,
   savePageContent,
   addSection,
   duplicateSection,
@@ -51,9 +50,6 @@ const componentMap = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdatePageData: (page, id, data) => {
-      dispatch(updatePage(page, id, data));
-    },
     addSection: (sectionIndex, sectionType) => {
       dispatch(addSection(sectionIndex, sectionType));
     },
@@ -90,7 +86,7 @@ const mapStateToProps = state => {
 };
 
 
-const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, onUpdatePageData, savePageContent, addSection, deleteSection, duplicateSection, addContentItem, updateContentItem, deleteContentItem, sectionTag, selectedTag, editSectionTag }) => {
+const DynamicSection = ({ content, type, sectionIndex, pageData, isEditingPage, savePageContent, addSection, deleteSection, duplicateSection, addContentItem, updateContentItem, deleteContentItem, sectionTag, selectedTag, editSectionTag }) => {
 
   const onAddSection = (sectionType) => {
     savePageContent(() => addSection(sectionIndex, sectionType))

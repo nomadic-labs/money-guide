@@ -31,19 +31,20 @@ const mapStateToProps = state => {
   return {
     pageData: state.page.data,
     isLoggedIn: state.adminTools.isLoggedIn,
+    isEditingPage: state.adminTools.isEditingPage
   };
 };
 
 class HomePage extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isEditingPage && this.props.isEditingPage) {
+      const initialPageData = {
+        ...this.props.data.pages,
+        content: JSON.parse(this.props.data.pages.content)
+      };
 
-  constructor(props) {
-    super(props)
-    const initialPageData = {
-      ...this.props.data.pages,
-      content: JSON.parse(this.props.data.pages.content)
-    };
-
-    this.props.onLoadPageData(initialPageData);
+      this.props.onLoadPageData(initialPageData);
+    }
   }
 
   onSave = id => content => {
@@ -51,11 +52,10 @@ class HomePage extends React.Component {
   };
 
   render() {
-    console.log("this.props", this.props)
     const content = this.props.pageData ? this.props.pageData.content : JSON.parse(this.props.data.pages.content);
 
     return (
-      <Layout light={true} location={this.props.location}>
+      <Layout light={true} location={this.props.location} lang={this.props.data.pages.lang} pageTranslations={this.props.data.pages.translations}>
         <section id="landing" className="bg-dark">
             <Grid container>
 

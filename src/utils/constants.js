@@ -36,7 +36,7 @@ export const CONTENT_MAP = {
   timeline: { type: "timeline", content: { alignment: "left" } },
   button: { type: "button", content: { anchor: "Button", link: "/" } },
   link: { type: "link", content: { anchor: "Link text", link: "/" } },
-  expandableText: { type: "expandableText", content: { header: "Name", description: "<p>Bio</p>" } },
+  expandableText: { type: "expandableText", content: { header: "Title", description: "<p>Content</p>" } },
   videos: { type: "videos", content: { playlistId: { text: ""} }},
   quote: {
     type: "quote",

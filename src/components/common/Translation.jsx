@@ -10,8 +10,11 @@ const mapStateToProps = state => {
 
 
 const Translation = ({ translations, lang, id, defaultText }) => {
+  // console.log({translations})
+  // console.log({lang})
+  // console.log({id})
   if (!translations[id] && defaultText) return defaultText;
-  if (!translations[id]) return "No translation available";
+  if (!translations[id]) return "";
 
   const translatedString = translations[id][lang] ? translations[id][lang] : translations[id][DEFAULT_LANGUAGE]
   return translatedString;

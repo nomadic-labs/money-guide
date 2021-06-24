@@ -15,7 +15,7 @@ import {
 
 import T from "./Translation";
 
-import { uploadImage } from "../../firebase/operations"
+import { uploadFile as uploadImage } from "../../aws/operations";
 
 class PodcastEditor extends React.Component {
   constructor(props) {
