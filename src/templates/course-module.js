@@ -33,9 +33,6 @@ const mapDispatchToProps = dispatch => {
     onUpdateTitle: title => {
       dispatch(updateTitle(title));
     },
-    onUpdateHeaderImage: image => {
-      dispatch(updateHeaderImage(image));
-    },
     onSelectTag: selection => {
       dispatch(saveSelectedTag(selection))
     }
@@ -75,10 +72,6 @@ class CourseModulePage extends React.Component {
     this.props.onUpdateTitle(content.text)
   }
 
-  onUpdateHeaderImage = content => {
-    this.props.onUpdateHeaderImage({ imageSrc: content.imageSrc })
-  }
-
   render() {
     const pageData = this.props.pageData ? this.props.pageData : this.props.data.pages;
     const content = this.props.pageData ? this.props.pageData.content : JSON.parse(this.props.data.pages.content);
@@ -107,7 +100,7 @@ class CourseModulePage extends React.Component {
         {content.headerImage &&
           <EditableImageUpload
             styles={{ container: {display: 'flex', marginBottom: '40px'} }}
-            onSave={ this.onUpdateHeaderImage }
+            onSave={ this.onSave("headerImage") }
             uploadImage={ uploadImage }
             content={ content.headerImage || { imageSrc: null } }
             maxSize={1024 * 1024 * 12}
