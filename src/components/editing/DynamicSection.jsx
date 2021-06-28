@@ -28,6 +28,7 @@ import Link from "../common/Link";
 import Quote from "../common/Quote";
 import YoutubeVideoPlaylist from "../common/YoutubeVideoPlaylist";
 import ExpandableText from "../common/ExpandableText";
+import Table from "../common/Table";
 import SectionEditingActions from "./SectionEditingActions";
 
 const componentMap = {
@@ -46,6 +47,7 @@ const componentMap = {
   resources: Resources,
   videos: YoutubeVideoPlaylist,
   expandableText: ExpandableText,
+  table: Table,
 }
 
 const mapDispatchToProps = dispatch => {

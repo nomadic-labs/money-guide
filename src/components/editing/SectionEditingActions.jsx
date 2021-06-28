@@ -178,6 +178,13 @@ class SectionEditingActions extends React.Component {
                 Image
               </MenuItem>
 
+              <MenuItem onClick={() => {
+                this.props.onAddContentItem("table")
+                this.closeMenu()
+              }}>
+                Table
+              </MenuItem>
+
               <MenuItem
                 onClick={() => {
                   this.props.onAddContentItem("expandableText")
