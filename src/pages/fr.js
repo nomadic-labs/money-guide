@@ -36,15 +36,14 @@ const mapStateToProps = state => {
 };
 
 class HomePage extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (!prevProps.isEditingPage && this.props.isEditingPage) {
-      const initialPageData = {
-        ...this.props.data.pages,
-        content: JSON.parse(this.props.data.pages.content)
-      };
+  constructor(props) {
+    super(props)
+    const initialPageData = {
+      ...this.props.data.pages,
+      content: JSON.parse(this.props.data.pages.content)
+    };
 
-      this.props.onLoadPageData(initialPageData);
-    }
+    this.props.onLoadPageData(initialPageData);
   }
 
   onSave = id => content => {

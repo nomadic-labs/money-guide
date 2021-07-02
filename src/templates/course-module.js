@@ -52,16 +52,17 @@ const mapStateToProps = state => {
 
 
 class CourseModulePage extends React.Component {
+  constructor(props) {
+    super(props)
+    const initialPageData = {
+      ...this.props.data.pages,
+      content: JSON.parse(this.props.data.pages.content)
+    };
+
+    this.props.onLoadPageData(initialPageData);
+  }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.isEditingPage && this.props.isEditingPage) {
-      const initialPageData = {
-        ...this.props.data.pages,
-        content: JSON.parse(this.props.data.pages.content)
-      };
-
-      this.props.onLoadPageData(initialPageData);
-    }
   }
 
   onSave = id => content => {
