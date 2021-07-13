@@ -109,6 +109,12 @@ export function setPageContentState(location, content) {
 export function savePage(pageData, pageId) {
   return dispatch => {
     const db = firestore;
+
+    console.log({pageData})
+    if (typeof(pageData.content) !== "string") {
+      pageData.content = JSON.stringify(pageData.content)
+    }
+
     db
       .collection('pages')
       .doc(pageId)

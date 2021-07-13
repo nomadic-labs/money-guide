@@ -8,6 +8,7 @@ import {
   savePage,
   updateFirebaseData,
   fetchPages,
+  updatePageTitle,
 } from "../../redux/actions";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -49,6 +50,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchPages: () => {
       dispatch(fetchPages())
+    },
+    updatePageTitle: (title) => {
+      dispatch(updatePageTitle(title))
     },
   };
 };
@@ -152,6 +156,7 @@ class CreatePageModal extends React.Component {
   }
 
   editPage = () => {
+    this.props.updatePageTitle(this.state.page.title);
     this.props.savePage(this.state.page, this.props.page.id);
   }
 
